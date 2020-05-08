@@ -17,6 +17,11 @@ raw_data = readfile()
 timestamps = []
 for message in raw_data['messages']:
     timestamps.append(message['timestamp_ms'])
-print(timestamps)
+#print(timestamps)
 
 #print(raw_data['messages'][0]['timestamp_ms'])
+
+#Plot the timestamps
+histogram = plt.hist(timestamps, bins=50, color='darkblue')
+
+plt.show()
