@@ -21,7 +21,12 @@ for message in raw_data['messages']:
 
 #print(raw_data['messages'][0]['timestamp_ms'])
 
-#Plot the timestamps
-histogram = plt.hist(timestamps, bins=50, color='darkblue')
+#Plot the timestamps with histogram
+#histogram = plt.hist(timestamps, bins=50, color='darkblue')
+#plt.show()
 
-plt.show()
+#Plot with datetime
+dates = []
+for time in timestamps:
+    dates.append(datetime.datetime.fromtimestamp(float(time)/1000.0))
+print(dates)
