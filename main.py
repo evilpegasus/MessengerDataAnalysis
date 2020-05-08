@@ -12,4 +12,11 @@ def readfile():
     data = json.load(file)
     return data
 
-print(json.dumps(readfile(), indent = 2, sort_keys=True))
+raw_data = readfile()
+#print(json.dumps(raw_data, indent = 2, sort_keys=True))
+timestamps = []
+for message in raw_data['messages']:
+    timestamps.append(message['timestamp_ms'])
+print(timestamps)
+
+#print(raw_data['messages'][0]['timestamp_ms'])
