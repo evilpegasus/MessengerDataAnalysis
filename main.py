@@ -1,6 +1,7 @@
 from tkinter import Tk
 from tkinter.filedialog import askopenfile
 
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
@@ -22,11 +23,27 @@ for message in raw_data['messages']:
 #print(raw_data['messages'][0]['timestamp_ms'])
 
 #Plot the timestamps with histogram
-#histogram = plt.hist(timestamps, bins=50, color='darkblue')
-#plt.show()
+# histogram = plt.hist(timestamps, bins=30, color='darkblue')
+# plt.show()
+
+
 
 #Plot with datetime
 dates = []
 for time in timestamps:
     dates.append(datetime.datetime.fromtimestamp(float(time)/1000.0))
-print(dates)
+#print(dates)
+
+
+
+
+#pandas
+df = pd.DataFrame(dates)
+df.set_index(0, drop=False, inplace=True)
+
+
+print(df)
+fig, ax = plt.subplots()
+df.groupby(pd.Grouper(freq='W')).count().plot(kind='bar', ax=ax, width=1.0)
+
+plt.show()
